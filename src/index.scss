@@ -50,6 +50,13 @@ body{
         box-shadow: 1px 1px 2px var(--blue);
         transform: translate(-1px, -1px);
     }
+    &:disabled{
+        transition: none;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+        background-color: gray;
+    }
 }
 
 .login-wrapper{
@@ -100,4 +107,55 @@ body{
 
 .dashboard-wrapper{
     padding: 2% 4%;
+}
+
+.room-wrapper{
+    .room{
+        width: 100px;
+        height: 100px;
+        border: 1px solid gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .temperature{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.overview-wrapper{
+    .rooms{
+        display: flex;
+        gap:16px;
+    }
+}
+
+.modal-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    .backdrop{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(100, 100, 100, 0.5);
+        z-index: 11;
+    }
+    .content{
+        min-width: 350px;
+        min-height: 250px;
+        border-radius: 12px;
+        background-color: white;
+        z-index: 12;
+        padding: 20px 30px;
+    }
 }

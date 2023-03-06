@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { login, loginErrors, loginMessage } from "../redux/userSlice";
+import { login, userErrors, userMessage } from "../redux/userSlice";
 
 const Login =()=>{
-    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
@@ -20,8 +19,8 @@ const Login =()=>{
         }
     };
     useEffect(()=>{
-        dispatch(loginMessage())
-        dispatch(loginErrors())
+        dispatch(userMessage())
+        dispatch(userErrors())
     }, [email, password])
     const { errors, message, loading } = useSelector((state) => state.user);
     if(localStorage.getItem("token")){
@@ -37,6 +36,7 @@ const Login =()=>{
                 <Button onClick={handleLogin}>Login</Button>
             </div>
             }</div> 
+            <p>Don't have an account? <Link to={'/register'}>Crate one</Link></p>
         </div>
     </div>
 }
