@@ -9,7 +9,7 @@ import { getAllRooms } from "../redux/roomsSlice";
 const Overview = () => {
     const { user } = useSelector(state => state.user)
     const [addRoomModal, setAddRoomModal] = useState(false)
-
+    const [isEdit, setIsEdit] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllRooms())
@@ -22,10 +22,13 @@ const Overview = () => {
         {message && <p className="error-message">{message}</p>}
         <div className="rooms">
         {data && data.length ? data.map((room, i)=>{
-            return <Room key={room.id}room={room}/>
+            return <Room key={room.id}room={room} isEdit={isEdit}/>
         }): !loading && <p>Currently no rooms.</p>}
         </div>
-        <Button onClick={()=>{setAddRoomModal(true)}}>Add room</Button>
+        <div className="controls">
+            {!isEdit && <Button onClick={()=>{setAddRoomModal(true)}}>Add room</Button>}
+            <Button onClick={()=>{setIsEdit(state=>!state)}}>{isEdit ? "Save Changes" : "Edit"}</Button>
+        </div>
         {addRoomModal && <AddRoomModal close={()=>setAddRoomModal(false)}/>}
     </div>
 }

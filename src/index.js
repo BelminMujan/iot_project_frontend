@@ -8,8 +8,13 @@ import store from "./store";
 import './index.css'
 import Register from './screens/Register';
 import Overview from './screens/Overview';
+import Arduino from './components/Arduino';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const routes = createBrowserRouter([
+  {
+    path: '/arduino',
+    element: <Arduino/>
+  },
   {
     path: '/login',
     element: <Login/>
@@ -30,9 +35,9 @@ const routes = createBrowserRouter([
   },
 ])
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={routes}/>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

@@ -124,10 +124,20 @@ body {
   font-size: 2rem;
   font-weight: bold;
 }
+.room-wrapper .edit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}
 
 .overview-wrapper .rooms {
   display: flex;
   gap: 16px;
+}
+.overview-wrapper .controls {
+  display: flex;
+  gap: 10px;
 }
 
 .modal-wrapper {
