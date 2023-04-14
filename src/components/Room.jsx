@@ -59,7 +59,9 @@ const Room = ({ room, isEdit }) => {
             })
             .build();
         connection.on("TemperatureUpdate", (temp) => {
-            setTemperature(temp);
+            if(temp.id == _room.sensorId){
+                setTemperature(temp.value);
+            }
         });
         connection.start();
         return () => {
@@ -67,7 +69,6 @@ const Room = ({ room, isEdit }) => {
         };
     }, []);
     useEffect(() => {
-        console.log(temperature);
         setColor(colors.find((c) => temperature >= c.min && temperature < c.max))
     }, [temperature])
 
@@ -88,6 +89,7 @@ const Room = ({ room, isEdit }) => {
                 <Input value={_room?.title} onChange={(e)=>handleUpdate(e.target.value, "title")} label={"Title"} />
                 <Input type="number" value={_room.xAxis} onChange={(e)=>handleUpdate(e.target.value, "xAxis")} label={"X Axis"} />
                 <Input type="number" value={_room.yAxis} onChange={(e)=>handleUpdate(e.target.value, "yAxis")} label={"Y Axis"} />
+                <Input value={_room.sensorId} onChange={(e)=>handleUpdate(e.target.value, "sensorId")} label={"Sensor ID (Mac address)"} />
             </div>
         :<h4>{_room?.title}</h4>}
         <div className="room" style={{ backgroundColor: color ? color.color : "white", ...roomStyle}}>
